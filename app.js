@@ -1,7 +1,15 @@
 const { configure } = require('@dwp/govuk-casa');
 const express = require('express');
 const path = require('path');
-
+const https = require('https');
+const fs = require('fs');
+const port = 3000;
+var key = fs.readFileSync(__dirname + '/selfsigned.key');
+var cert = fs.readFileSync(__dirname + '/selfsigned.crt');
+var options = {
+  key: key,
+  cert: cert
+};
 // Create a new CASA application instance.
 const app = express();
 const casaApp = configure(app, {
@@ -44,8 +52,13 @@ casaApp.loadDefinitions(
 require('./routes/submit')(casaApp, casaApp.config.mountUrl, casaApp.router, casaApp.csrfMiddleware);
 
 // Start server
-const server = app.listen(process.env.PORT || 443, () => {
+/* const server = app.listen(process.env.PORT || 3000, () => {
   const host = server.address().address;
   const { port } = server.address();
   console.log('App listening at http://%s:%s', host, port);
+}); */
+var server = https.createServer(options, app);
+
+server.listen(port, () => {
+  console.log("server starting on port : " + port)
 });
