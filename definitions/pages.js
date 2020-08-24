@@ -7,7 +7,7 @@ const reviewPageDefinition = require('@dwp/govuk-casa/definitions/review-page');
 exports = module.exports = (function() {
   var pages = Object.create(null);
 
-  pages['personal-details'] = {
+   pages['personal-details'] = {
     view: 'pages/personal-details.njk',
     reviewBlockView: 'review-blocks/personal-details.njk',
     fieldValidators: require('./field-validators/personal-details'),
@@ -18,6 +18,22 @@ exports = module.exports = (function() {
       contextData.person = formData;
       return contextData;
     },
+    fieldReader: ({ contextData }) => {
+      return contextData.person;
+    }
+  }; 
+
+  pages['sign-up'] = {
+    view: 'pages/sign-up.njk',
+    reviewBlockView: 'review-blocks/sign-up.njk',
+    // fieldValidators: require('./field-validators/sign-up.njk'),
+    // fieldGatherModifiers: {
+      // title: (v) => (`${v.fieldValue}-mod`.replace(/(-mod)+$/g, '-mod')),
+    // },
+     fieldWriter: ({ formData, contextData }) => {
+       contextData.person = formData;
+       return contextData;
+     },
     fieldReader: ({ contextData }) => {
       return contextData.person;
     }

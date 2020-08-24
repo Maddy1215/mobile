@@ -1,0 +1,99 @@
+{% extends "layouts/journey.njk" %}
+{% extends "layouts/custom-layout-no-sign-out.njk" %}
+
+{% from "components/button/macro.njk" import govukButton %}
+
+{% block pageTitle %}
+  Sign up
+{% endblock %}
+
+{% block content %}
+
+  {% if reset == 'Yes'%}
+
+    <a class="govuk-back-link" href="/admin/login">Back</a>
+
+  {% else %}
+  {% endif %}
+
+  <main class="govuk-main-wrapper govuk-main-wrapper--auto-spacing" id="sign-up-main-content" role="main">
+
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-full">
+
+        {% if reset == 'Yes'%}
+          <h1 class="govuk-heading-l">
+            Reset your password
+          </h1>
+        {% else %}
+          <h1 class="govuk-heading-l">
+            Sign up to manage customer products
+          </h1>
+        {% endif %}
+
+        {% if errors %}
+          {{ govukErrorSummary({
+            titleText: 'There is a problem',
+            errorList: errors.errorSummary
+          }) }}
+        {% endif %}
+
+        <form class="form" action="" method="post">
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="email">
+              Enter your email address
+            </label>
+            <input class="govuk-input govuk-input--width-20 {% if errors.email %}govuk-input--error{% endif %}" id="email" name="email" type="text" {% if signUp.email %} value="{{signUp.email}}" {% endif %}>
+          </div>
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="firstName">
+              Enter your first name
+            </label>
+            <input class="govuk-input govuk-input--width-20 {% if errors.firstName %}govuk-input--error{% endif %}" id="firstName" name="firstName" type="text" {% if signUp.firstName %} value="{{signUp.firstName}}" {% endif %}>
+          </div>
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="lastName">
+              Enter your last name
+            </label>
+            <input class="govuk-input govuk-input--width-20 {% if errors.lastName %}govuk-input--error{% endif %}" id="lastName" name="lastName" type="text" {% if signUp.lastName %} value="{{signUp.lastName}}" {% endif %}>
+          </div>
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="password">
+              Create a password
+            </label>
+            <input class="govuk-input govuk-input--width-20 {% if errors.password %}govuk-input--error{% endif %}" id="password" name="password" type="password">
+          </div>
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="confirmPassword">
+              Confirm your password
+            </label>
+            <input class="govuk-input govuk-input--width-20 {% if errors.password %}govuk-input--error{% endif %}" id="confirmPassword" name="confirmPassword" type="password">
+          </div>
+
+          {% if reset == 'Yes'%}
+            <p class="govuk-body">
+              {{ govukButton({
+    text: "Reset password",
+    isStartButton: true
+
+  }) }}
+            </p>
+          {% else %}
+            <p class="govuk-body">
+              {{ govukButton({
+    text: "Sign up",
+    isStartButton: true
+
+  }) }}
+            </p>
+          {% endif %}
+
+          <input type="hidden" id="path" name="path" value="{{reset}}">
+        </form>
+      </div>
+
+    </div>
+
+  </main>
+
+{% endblock %}

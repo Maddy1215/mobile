@@ -21,6 +21,13 @@
   </p>
   <p class="govuk-body">
     {{ govukButton({
+      text: t('welcome:btn'),
+      href: casa.mountUrl + "sign-up",
+      isStartButton: true
+    }) }}
+  </p>
+  <p class="govuk-body">
+    {{ govukButton({
       text: t('Add to Homescreen'),
       href: "manifest.webmanifest",
       isStartButton: false

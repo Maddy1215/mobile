@@ -44,7 +44,7 @@ casaApp.loadDefinitions(
 require('./routes/submit')(casaApp, casaApp.config.mountUrl, casaApp.router, casaApp.csrfMiddleware);
 
 // Start server
-const server = app.listen(process.env.PORT || 3000, () => {
+const server = app.listen(process.env.PORT || 443, () => {
   const host = server.address().address;
   const { port } = server.address();
   console.log('App listening at http://%s:%s', host, port);

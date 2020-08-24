@@ -25,8 +25,12 @@ exports = module.exports = (function MyAppUserJourney() {
     'review',
     'submit',
   );
+  plan.addSequence(
+    'sign-up',
+  );
 
   plan.addOrigin('main', 'personal-details');
+  plan.addOrigin('sign', 'sign-up');
 
   return plan;
 })();
