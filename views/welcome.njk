@@ -4,6 +4,7 @@
 
 {% block casaPageTitle %}
   {{ t('welcome:pageTitle') }}
+
 {% endblock %}
 
 {% block content %}
@@ -16,6 +17,13 @@
       text: t('welcome:btn'),
       href: casa.mountUrl + "personal-details",
       isStartButton: true
+    }) }}
+  </p>
+  <p class="govuk-body">
+    {{ govukButton({
+      text: t('Add to Homescreen'),
+      href: "manifest.webmanifest",
+      isStartButton: false
     }) }}
   </p>
 {% endblock %}

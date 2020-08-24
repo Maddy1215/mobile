@@ -5,7 +5,7 @@ const path = require('path');
 // Create a new CASA application instance.
 const app = express();
 const casaApp = configure(app, {
-  mountUrl: '/barebones/',
+  mountUrl: '/mobile/',
   views: {
     dirs: [ path.resolve(__dirname, 'views') ]
   },
